@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn} from 'typeorm';
 import {Course} from './Course';
 
 @Entity()
@@ -7,26 +7,24 @@ export class Question {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column("text")
+    @Column('text')
     question: string;
 
-    @Column("varchar")
+    @Column('varchar')
     A: string;
 
-    @Column("varchar")
+    @Column('varchar')
     B: string;
 
-    @Column("varchar")
+    @Column('varchar')
     C: string;
 
-    @Column("varchar")
+    @Column('varchar')
     D: string;
 
-    @Column("varchar")
+    @Column('varchar')
     answer: string;
 
-    @ManyToOne(type => Course)
-    @JoinColumn()
-    course: Course
-
+    @ManyToOne(type => Course, course => course.questions)
+    course: Course;
 }

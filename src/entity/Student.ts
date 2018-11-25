@@ -7,17 +7,17 @@ export class Student {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column("varchar")
+    @Column('varchar')
     studentName: string;
 
-    @Column("varchar")
+    @Column('varchar')
     studentEmail: string;
 
-    @Column("varchar")
+    @Column('varchar')
     studentPassword: string;
 
     @ManyToOne(type => Course)
     @JoinColumn()
-    course: Course
+    course: Course;
 
 }

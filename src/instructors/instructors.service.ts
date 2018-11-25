@@ -7,7 +7,7 @@ import { Instructor } from '../entity/Instructor';
 export class InstructorsService{
     constructor(
         @InjectRepository(Instructor)
-        private readonly instructorRepository: Repository<Instructor>, 
+        private readonly instructorRepository: Repository<Instructor>,
     ) {}
 
     async create(instructor: Instructor) {
@@ -19,15 +19,15 @@ export class InstructorsService{
     }
 
     async findOne(id: number){
-        return await this.instructorRepository.findOne(id)
+        return await this.instructorRepository.findOne(id);
     }
 
     async update(id: number, instructor: Instructor){
-        return await this.instructorRepository.update(id, instructor)
+        return await this.instructorRepository.update(id, instructor);
     }
 
     async remove(id: number){
-        let instructor = await this.instructorRepository.findOne(id)
+        const instructor = await this.instructorRepository.findOne(id);
         return await this.instructorRepository.remove(instructor);
     }
 }

@@ -7,7 +7,7 @@ import { Question } from '../entity/Question';
 export class QuestionsService{
     constructor(
         @InjectRepository(Question)
-        private readonly questionRepository: Repository<Question>, 
+        private readonly questionRepository: Repository<Question>,
     ) {}
 
     async create(question: Question) {
@@ -19,15 +19,15 @@ export class QuestionsService{
     }
 
     async findOne(id: number){
-        return await this.questionRepository.findOne(id)
+        return await this.questionRepository.findOne(id);
     }
 
     async update(id: number, question: Question){
-        return await this.questionRepository.update(id, question)
+        return await this.questionRepository.update(id, question);
     }
 
     async remove(id: number){
-        let question = await this.questionRepository.findOne(id)
+        const question = await this.questionRepository.findOne(id);
         return await this.questionRepository.remove(question);
     }
 }

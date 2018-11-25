@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column} from 'typeorm';
 
 @Entity()
 export class Instructor {
@@ -6,13 +6,13 @@ export class Instructor {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column("varchar")
+    @Column('varchar')
     instructorName: string;
 
-    @Column("varchar")
+    @Column('varchar')
     instructorEmail: string;
 
-    @Column("varchar")
+    @Column('varchar')
     instructorPassword: string;
 
 }

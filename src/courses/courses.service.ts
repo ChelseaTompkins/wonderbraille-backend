@@ -7,7 +7,7 @@ import { Course } from '../entity/Course';
 export class CoursesService{
     constructor(
         @InjectRepository(Course)
-        private readonly courseRepository: Repository<Course>, 
+        private readonly courseRepository: Repository<Course>,
     ) {}
 
     async create(course: Course) {
@@ -19,15 +19,15 @@ export class CoursesService{
     }
 
     async findOne(id: number){
-        return await this.courseRepository.findOne(id)
+        return await this.courseRepository.findOne(id);
     }
 
     async update(id: number, course: Course){
-        return await this.courseRepository.update(id, course)
+        return await this.courseRepository.update(id, course);
     }
 
     async remove(id: number){
-        let course = await this.courseRepository.findOne(id)
+        const course = await this.courseRepository.findOne(id);
         return await this.courseRepository.remove(course);
     }
 }

@@ -31,4 +31,3 @@ export class CoursesController {
         return this.coursesService.remove(id);
     }
 }
-
