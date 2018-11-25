@@ -24,12 +24,13 @@ createConnection().then(async connection => {
 
     // CREATING A QUESTION
     const question = new Question();
-    question.question = 'What color is the sky?';
-    question.A = 'blue';
-    question.B = 'red';
-    question.C = 'green';
-    question.D = 'purple';
-    question.answer = 'blue';
+    question.question = 'Which letter is pictured below?';
+    question.img = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Braille_A1.svg/50px-Braille_A1.svg.png';
+    question.A = 'Letter B';
+    question.B = 'Letter A';
+    question.C = 'Letter J';
+    question.D = 'Letter D';
+    question.answer = 'B';
     question.course = savedCourse;
     const questionRepository = connection.getRepository(Question);
     await questionRepository.save(question);

@@ -10,6 +10,9 @@ export class Question {
     @Column('text')
     question: string;
 
+    @Column('text')
+    img: string;
+
     @Column('varchar')
     A: string;
 
