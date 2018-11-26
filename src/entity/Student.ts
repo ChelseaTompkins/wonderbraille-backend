@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn} from 'typeorm';
 import {Course} from './Course';
 
 @Entity()
@@ -13,8 +13,11 @@ export class Student {
     @Column('varchar')
     studentEmail: string;
 
-    @Column('varchar')
-    studentPassword: string;
+    @Column({length: 100, nullable: true})
+    studentPassword: string | undefined;
+
+    @Column({ length: 100, nullable: true })
+    passwordHash: string|undefined;
 
     @ManyToOne(type => Course)
     @JoinColumn()

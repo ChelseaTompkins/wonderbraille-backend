@@ -39,7 +39,8 @@ createConnection().then(async connection => {
     const student = new Student();
     student.studentName = 'Chelsea Tompkins';
     student.studentEmail = 'cnoelle1091@gmail.com';
-    student.studentPassword = 'braille';
+    student.studentPassword = '';
+    student.passwordHash = '';
     student.course = savedCourse;
     const studentRepository = connection.getRepository(Student);
     await studentRepository.save(student);
