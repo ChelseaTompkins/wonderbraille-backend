@@ -12,8 +12,8 @@ export class StudentsService{
         private readonly studentRepository: Repository<Student>,
     ) {}
 
-    async getStudentByStudentName(studentName: string): Promise<Student> {
-        return (await this.studentRepository.find({ studentName }))[0];
+    async getStudentByStudentEmail(studentEmail: string): Promise<Student> {
+        return (await this.studentRepository.find({ studentEmail }))[0];
       }
 
     async create(student: Student): Promise<Student> {

@@ -12,15 +12,15 @@ export class AuthController {
 
   @Post('login')
   async loginUser(@Response() res: any, @Body() body: Student) {
-    if (!(body && body.studentName && body.studentPassword)) {
+    if (!(body && body.studentEmail && body.studentPassword)) {
       return res.status(HttpStatus.FORBIDDEN).json({ message: 'Username and password are required!' });
     }
 
-    const student = await this.studentsService.getStudentByStudentName(body.studentName);
+    const student = await this.studentsService.getStudentByStudentEmail(body.studentEmail);
 
     if (student) {
       if (await this.studentsService.compareHash(body.studentPassword, body.passwordHash)) {
-        return res.status(HttpStatus.OK).json(await this.authService.createToken(student.id, student.studentName));
+        return res.status(HttpStatus.OK).json(await this.authService.createToken(student.id, student.studentEmail));
       }
     }
 
@@ -29,11 +29,11 @@ export class AuthController {
 
   @Post('register')
   async registerUser(@Response() res: any, @Body() body: Student) {
-    if (!(body && body.studentName && body.studentPassword)) {
+    if (!(body && body.studentName && body.studentEmail && body.studentPassword)) {
       return res.status(HttpStatus.FORBIDDEN).json({ message: 'Username and password are required!' });
     }
 
-    let student = await this.studentsService.getStudentByStudentName(body.studentName);
+    let student = await this.studentsService.getStudentByStudentEmail(body.studentEmail);
 
     if (student) {
       return res.status(HttpStatus.FORBIDDEN).json({ message: 'Username exists' });
