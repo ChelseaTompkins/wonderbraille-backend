@@ -16,11 +16,27 @@ import { StudentsModule } from '../students/students.module';
   controllers: [AuthController],
 })
 export class AuthModule implements NestModule {
+  constructor(private authService: AuthService){
+
+  }
+
   public configure(consumer: MiddlewareConsumer) {
     consumer
-      .apply(passport.authenticate('jwt', { session: false }))
+      .apply(this.authService.verifyToken)
       .forRoutes(
-        { path: '/products', method: RequestMethod.ALL },
-        { path: '/products/*', method: RequestMethod.ALL });
+        { path: '/api/instructors', method: RequestMethod.ALL },
+        { path: '/api/questions', method: RequestMethod.ALL },
+        { path: '/api/students', method: RequestMethod.ALL },
+        { path: '/api/courses', method: RequestMethod.ALL });
   }
 }
+
+// export class AuthModule implements NestModule {
+//   public configure(consumer: MiddlewareConsumer) {
+//     consumer
+//       .apply(passport.authenticate('jwt', { session: false }))
+//       .forRoutes(
+//         { path: '/products', method: RequestMethod.ALL },
+//         { path: '/products/*', method: RequestMethod.ALL });
+//   }
+// }
