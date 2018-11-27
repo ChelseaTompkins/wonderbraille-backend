@@ -1,17 +1,16 @@
 import * as jwt from 'jsonwebtoken';
 import { Injectable } from '@nestjs/common';
 import { StudentsService } from '../students/students.service';
+import { Student } from '../entity/Student';
 
 @Injectable()
 export class AuthService {
   constructor(private readonly studentsService: StudentsService) { }
 
-  async createToken(id: number, studentEmail: string) {
+  async createToken(student: any) {
     const expiresIn = 60 * 60;
     const secretOrKey = 'secret';
-    const student = { studentEmail };
-    const token = jwt.sign(student, secretOrKey, { expiresIn });
-
+    const token = jwt.sign(student, secretOrKey, {});
     return { expires_in: expiresIn, token };
   }
 

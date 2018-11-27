@@ -41,7 +41,7 @@ export class StudentsService{
     }
 
     async findOne(id: number){
-        return await this.studentRepository.findOne(id);
+        return await this.studentRepository.findOne(id, { relations: ['currentQuestion'] });
     }
 
     async update(id: number, student: Student){

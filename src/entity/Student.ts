@@ -25,5 +25,6 @@ export class Student {
     course: Course;
 
     @ManyToOne(type => Question)
+    @JoinColumn()
     currentQuestion: Question;
 }

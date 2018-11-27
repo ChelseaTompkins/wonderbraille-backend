@@ -20,7 +20,7 @@ export class AuthController {
 
     if (student) {
       if (await this.studentsService.compareHash(body.studentPassword, student.passwordHash)) {
-        return res.status(HttpStatus.OK).json(await this.authService.createToken(student.id, student.studentEmail));
+        return res.status(HttpStatus.OK).json(await this.authService.createToken(Object.assign({}, student)));
       }
     }
 
