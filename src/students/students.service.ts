@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Student } from '../entity/Student';
+import { CoursesService } from '../courses/courses.service';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -10,6 +11,7 @@ export class StudentsService{
     constructor(
         @InjectRepository(Student)
         private readonly studentRepository: Repository<Student>,
+        private readonly courseService: CoursesService,
     ) {}
 
     async getStudentByStudentEmail(studentEmail: string): Promise<Student> {
@@ -19,6 +21,7 @@ export class StudentsService{
     async create(student: Student): Promise<Student> {
         student.passwordHash = await this.getHash(student.studentPassword);
         student.studentPassword = undefined;
+        student.course = (await this.courseService.findAll())[0];
         return await this.studentRepository.save(student);
     }
 

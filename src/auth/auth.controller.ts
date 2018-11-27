@@ -4,7 +4,7 @@ import { AuthService } from './auth.service';
 import { StudentsService } from '../students/students.service';
 import { Student } from '../entity/student';
 
-@Controller('auth')
+@Controller('api/auth')
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
@@ -19,7 +19,7 @@ export class AuthController {
     const student = await this.studentsService.getStudentByStudentEmail(body.studentEmail);
 
     if (student) {
-      if (await this.studentsService.compareHash(body.studentPassword, body.passwordHash)) {
+      if (await this.studentsService.compareHash(body.studentPassword, student.passwordHash)) {
         return res.status(HttpStatus.OK).json(await this.authService.createToken(student.id, student.studentEmail));
       }
     }
