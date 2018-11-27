@@ -33,7 +33,7 @@ createConnection().then(async connection => {
     question.answer = 'B';
     question.course = savedCourse;
     const questionRepository = connection.getRepository(Question);
-    await questionRepository.save(question);
+    const savedQuestion = await questionRepository.save(question);
 
     // CREATING A STUDENT
     const student = new Student();
@@ -42,6 +42,7 @@ createConnection().then(async connection => {
     student.studentPassword = '';
     student.passwordHash = '';
     student.course = savedCourse;
+    student.currentQuestion = savedQuestion;
     const studentRepository = connection.getRepository(Student);
     await studentRepository.save(student);
 });

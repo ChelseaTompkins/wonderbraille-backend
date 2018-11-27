@@ -1,5 +1,6 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn} from 'typeorm';
-import {Course} from './Course';
+import { Course } from './Course';
+import { Question } from './Question';
 
 @Entity()
 export class Student {
@@ -23,4 +24,6 @@ export class Student {
     @JoinColumn()
     course: Course;
 
+    @ManyToOne(type => Question)
+    currentQuestion: Question;
 }
