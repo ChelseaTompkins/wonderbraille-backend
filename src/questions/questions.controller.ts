@@ -16,7 +16,7 @@ export class QuestionsController {
     async findAll(@Req() req): Promise<any>{
         const questions = await this.questionsService.findAll();
         const student = await this.studentsService.findOne(req.decoded);
-        console.log(student);
+        // console.log(student);
         return {questions, currentQuestion: student.currentQuestion};
     }
 

@@ -45,7 +45,7 @@ export class StudentsService{
     }
 
     async update(id: number, student: Student){
-        return await this.studentRepository.update(id, student);
+        return await this.studentRepository.save(student);
     }
 
     async remove(id: number){

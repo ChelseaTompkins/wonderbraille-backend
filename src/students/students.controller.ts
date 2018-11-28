@@ -1,10 +1,11 @@
-import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Delete, Req } from '@nestjs/common';
 import { StudentsService } from './students.service';
+import { QuestionsService } from '../questions/questions.service';
 import { Student } from '../entity/Student';
 
 @Controller('api/students')
 export class StudentsController {
-    constructor(private readonly studentsService: StudentsService){}
+    constructor(private readonly studentsService: StudentsService, private readonly questionsService: QuestionsService){}
 
     @Post()
     async create(@Body() student: Student){
@@ -24,6 +25,14 @@ export class StudentsController {
     @Put(':id')
     async update(@Param('id') id, @Body() student: Student){
         return this.studentsService.update(id, student);
+    }
+
+    @Put('progress/:q_id')
+    async progress(@Param('q_id') q_id, @Req() req){
+        // const questions = await this.questionsService.findAll();
+        const student = await this.studentsService.findOne(req.decoded);
+        student.currentQuestion = await this.questionsService.findOne(q_id);
+        return this.studentsService.update(student.id, student);
     }
 
     @Delete(':id')
