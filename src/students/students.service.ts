@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { Student } from '../entity/Student';
 import { CoursesService } from '../courses/courses.service';
 import { QuestionsService } from '../questions/questions.service';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class StudentsService{

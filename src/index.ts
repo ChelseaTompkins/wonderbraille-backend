@@ -25,7 +25,7 @@ createConnection().then(async connection => {
     // CREATING A QUESTION
     const question = new Question();
     question.question = 'Which letter is pictured below?';
-    question.img = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Braille_A1.svg/50px-Braille_A1.svg.png';
+    question.img = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Braille_A1.svg/80px-Braille_A1.svg.png';
     question.A = 'Letter B';
     question.B = 'Letter A';
     question.C = 'Letter J';

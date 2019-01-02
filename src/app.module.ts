@@ -14,7 +14,8 @@ import { AuthModule } from './auth/auth.module';
     CoursesModule,
     StudentsModule,
     QuestionsModule,
-    AuthModule],
+    AuthModule,
+  ],
 })
 export class ApplicationModule {
   constructor(private readonly connection: Connection) {}
